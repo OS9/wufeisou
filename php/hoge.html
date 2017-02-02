@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
+	<title>toSlack</title>
+	<style type="text/css">
+		body {
+			background: rgb(205,255,255);
+			width: 100%;
+		}
+		li {
+			list-style-type: none;
+		}
+		h1 {
+			color: rgba(225,15,30,0.8); 
+		}
+		label div {
+			color: rgb(3,225,24);
+		}
+		.wrap {
+			width: 					100%;
+			display: 				flex;
+			display: 				-webkit-flex;
+			flex-direction: 		column;
+			-webkit-flex-direction: column;
+			align-items: 			center;
+			-webkit-align-items: 	center;
+			justify-content: 		center;
+			-webkit-justify-content:center;
+		}
+		canvas {
+			background: #888;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<h1>すらっくへおくる</h1>
+	<form action="hoge.php" method="post" class="wrap">
+		<ul>
+			<li>
+				<label>
+					<div>おなまえ(User name)</div>
+					<input type="text" name="user">
+				</label>
+			</li>
+			<li>
+				<label>
+					<div>くみ(Channel)</div>
+					<div class="wrap">
+						<select name="channel" id="listbox" style="width: 100%;">
+							<option>general</option>
+							<option>random</option>
+							<option>test</option>
+							<option>tests</option>
+							<option value="1">その他</option>
+						</select>	
+						<input type="text" id="sample" disabled="disabled" name="channel">
+					</div>
+				</label>
+			</li>
+			<li>
+				<label>
+					<div>はなす(Message)</div>
+					<textarea name="message" style="width: 100%;"></textarea>
+				</label>
+			</li>
+		</ul>
+		<input type="submit" value="おくる(Send)">
+	</form><br>
+	<canvas id="canvassample" width="200" height="200"></canvas>
+</div>
+
+<script type="text/javascript">
+	window.onload = function() {
+		draw();
+	};
+
+	function draw() {
+		/* canvas要素のノードオブジェクト */
+		var canvas = document.getElementById('canvassample');
+		/* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
+		if ( ! canvas || ! canvas.getContext ) {
+			return false;
+		}
+		var ctx = canvas.getContext('2d');
+		var count = 0;
+		var timer = setInterval(function() {
+			ctx.fillStyle = "#fff";
+			ctx.clearRect(0, 0 + count, 200, 150 + count);
+			ctx.fillStyle = "#f00";
+			ctx.fillRect(1 + count, 1, 20, 1 + count);
+			count++;
+			if (count > 400) {
+				count = 0;
+			}
+		}, 100);
+	}
+
+	var select = document.getElementById( 'listbox' );
+	
+	select.onchange = function() {
+		// 選択されているoption要素を取得する
+		var selectedItem = this.options[ this.selectedIndex ];
+
+		if(selectedItem.value == 1) {
+			var element = document.getElementById("sample");
+			element.removeAttribute("disabled");    	
+    	}
+	}
+</script>
+</body>
+</html>
