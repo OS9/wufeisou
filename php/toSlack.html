@@ -91,7 +91,7 @@
 		var count = 0;
 		var timer = setInterval(function() {
 			ctx.fillStyle = "#fff";
-			ctx.clearRect(0, 0 + count, 200, 150 + count);
+			ctx.clearRect(0, 0 + count, 200, 150);
 			ctx.fillStyle = "#f00";
 			ctx.fillRect(1 + count, 1, 20, 1 + count);
 			count++;
@@ -110,7 +110,7 @@
 		if(selectedItem.value == 1) {
 			var element = document.getElementById("sample");
 			element.removeAttribute("disabled");    	
-    	}
+    		}
 	}
 </script>
 </body>
