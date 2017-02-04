@@ -91,9 +91,9 @@
 		var count = 0;
 		var timer = setInterval(function() {
 			ctx.fillStyle = "#fff";
-			ctx.clearRect(0, 0 + count, 200, 1 + count);
+			ctx.clearRect(0, 0 + count, 0, 0 + count);
 			ctx.fillStyle = "#f00";
-			ctx.fillRect(1 + count, 1, 20, 1 + count);
+			ctx.fillRect(1 + count, 20, 20, 1 + count);
 			count++;
 			if (count > 400) {
 				count = 0;
